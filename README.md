@@ -8,7 +8,9 @@ Sometimes it can be helpful to see your app exactly like one of your actual user
 -   Debugging real-world edge cases
 -   Live 1:1 support sessions ("Let's look at your account together")
 
-Live app:
+Live app: [supa-user-login.vercel.app](https://supa-user-login.vercel.app/)
+
+![Supa User Login Screenshot](supa-user-login-screenshot.png)
 
 ## Run locally
 
@@ -23,7 +25,7 @@ npm install
 3. Start the app
 
 ```
-npm run start
+npm run dev
 ```
 
 4. Open https://localhost:8080 in your browser
