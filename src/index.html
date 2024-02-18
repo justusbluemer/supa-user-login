@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Supabase User Login</title>
+
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+		<link rel="stylesheet" href="/style.css" />
+	</head>
+	<body>
+		<div
+			id="app"
+			class="bg-white py-24 sm:py-32 mx-auto max-w-7xl px-6 lg:px-8"
+		>
+			<div class="">
+				<div class="mx-auto max-w-2xl lg:mx-0">
+					<p class="text-base font-semibold leading-7 text-blue-600">
+						Login as your users
+					</p>
+					<h2
+						class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+					>
+						Supabase User Login
+					</h2>
+					<p class="mt-6 text-lg leading-8 text-gray-600">
+						Select a user from the list and login as this user.<br />
+						Use your application from the perspective of your users,
+						e. g. for testing or support.
+					</p>
+				</div>
+			</div>
+
+			<!-- Form for Supabase URL and key -->
+			<div class="mt-12 max-w-2xl">
+				<label
+					for="supabase-url"
+					class="block text-sm font-medium leading-6 text-gray-900"
+					>Supabase URL</label
+				>
+				<div class="mt-2">
+					<input
+						type="text"
+						name="supabase-url"
+						id="supabase-url"
+						class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+						placeholder="https://ifdojgiahfleggialiru.supabase.co"
+						aria-describedby="email-description"
+						v-model="supabaseUrl"
+					/>
+				</div>
+				<p class="mt-2 text-sm text-gray-500" id="email-description">
+					You can find this in the Supabase UI under
+					<i>Settings > API</i>
+				</p>
+			</div>
+
+			<div class="mt-4 max-w-2xl">
+				<label
+					for="supabase-url"
+					class="block text-sm font-medium leading-6 text-gray-900"
+					>Supabase Service Role Key (secret)</label
+				>
+				<div class="mt-2">
+					<input
+						type="text"
+						name="supabase-url"
+						id="supabase-url"
+						class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+						placeholder="eyisrgfASfhDhAWjflazqDxnahWoruRhsFDh.eyAc…"
+						aria-describedby="email-description"
+						v-model="supabaseSecretKey"
+					/>
+				</div>
+				<p class="mt-2 text-sm text-gray-500" id="email-description">
+					Keep this key secret!
+				</p>
+			</div>
+
+			<div class="mt-12">
+				<button
+					type="button"
+					class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+					@click="loadUsers"
+				>
+					Load users
+				</button>
+			</div>
+
+			<!-- Users table -->
+			<div class="mt-12">
+				<div class="sm:flex sm:items-center">
+					<div class="sm:flex-auto">
+						<h1
+							class="text-base font-semibold leading-6 text-gray-900"
+						>
+							Users
+						</h1>
+						<p class="mt-2 text-sm text-gray-700">
+							A list of all the users in your account including
+							their name, title, email and role.
+						</p>
+					</div>
+				</div>
+				<div class="mt-8 flow-root">
+					<div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+						<div
+							class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
+						>
+							<table class="min-w-full divide-y divide-gray-300">
+								<thead>
+									<tr>
+										<th
+											scope="col"
+											class="py-3.5 text-left text-sm font-semibold text-gray-900"
+										>
+											Email
+										</th>
+										<th
+											scope="col"
+											class="py-3.5 text-left text-sm font-semibold text-gray-900"
+										>
+											Last Login
+										</th>
+										<th
+											scope="col"
+											class="py-3.5 text-left text-sm font-semibold text-gray-900"
+										>
+											Login
+										</th>
+									</tr>
+								</thead>
+								<tbody class="divide-y divide-gray-200">
+									<tr v-for="user in users" :key="user.id">
+										<td
+											class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"
+										>
+											{{user.email}}
+										</td>
+										<td
+											class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+										>
+											{{formatLoginDate(user.last_sign_in_at)}}
+										</td>
+										<td
+											class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
+										>
+											<button
+												class="text-blue-600 hover:text-blue-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+												@click="loginAsUser(user)"
+											>
+												Login as this user
+											</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
