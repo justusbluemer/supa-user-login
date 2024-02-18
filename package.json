@@ -4,7 +4,7 @@
 	"description": "Some utility code that might come in handy for miscellaneous usecases",
 	"main": "app.js",
 	"scripts": {
-		"build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css --watch",
+		"build": "npx tailwindcss -i ./src/style.css -o ./dist/style.css",
 		"dev": "http-server -p 8080",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
