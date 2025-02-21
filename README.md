@@ -12,6 +12,10 @@ Live app: [supa-user-login.vercel.app](https://supa-user-login.vercel.app/)
 
 ![Supa User Login Screenshot](supa-user-login-screenshot.png)
 
+### User editing feature
+
+* Changing a user's email – not possible through the Supabase dashboard, so this is a useful tool to do it. The email changed in this way will be automatically confirmed *without* the user needing to click a link in an email.
+
 ## Run locally
 
 1. Clone this repository and navigate into its folder
